@@ -28,8 +28,8 @@ def run(client):
     }
 
     engine_options = {
-        "Pip Library": "library",
         "API Service": "api",
+        "Pip Library": "library",
         "DuckDuckGo": "duckduckgo"
     }
 
