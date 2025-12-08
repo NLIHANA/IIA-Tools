@@ -662,7 +662,7 @@ def process_single_url(url, source, good_keywords, bad_keywords):
     except Exception as e:
         st.error(f"Error processing URL '{url}': {e}")
         score = "C"
-        row_data = [url, title if title else "Error", "Error", score, "Error", source if source else "Error", "Error", "Error", "Error", timestamp if timestamp else "Error"]    
+        row_data = [url, title if title else "Error", "Error", "Error", "Error", score, "Error", source if source else "Error", "Error", "Error", "Error", timestamp if timestamp else "Error"]    
     return row_data, score
 
 
