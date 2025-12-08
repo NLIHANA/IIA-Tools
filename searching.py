@@ -552,7 +552,7 @@ def filter_ignored_urls(block_list, classified_urls):
     
 
 # Function to search and filter URLs based on query
-def search_and_filter_urls(query, block_list, num_results=100, language="en", homepage_only=False, engine="API"):
+def search_and_filter_urls(query, block_list, num_results=100, language="en", homepage_only=False, engine="api"):
     search_results = []
     try:
         if engine == "api":
