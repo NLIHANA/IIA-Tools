@@ -626,9 +626,9 @@ def update_google_sheets(rows_to_sure, rows_to_not_sure, sure_sheet, not_sure_sh
 
 # Function to add headers to sheets
 def check_and_add_headers(sheet):
-    headers = ["URL", "Title", "Description", "Tier", "Details", "Source","Languages", "Good Keywords", "Bad Keywords" , "Timestamp"]
+    headers = ["URL", "Title", "Description","English Title", "English Description", "Tier", "Details", "Source","Languages", "Good Keywords", "Bad Keywords" , "Timestamp"]
     # Check if the sheet has any data (excluding the header row)
-    if len(sheet.get_all_values()) <= 1:  # Only the header exists
+    if len(sheet.get_all_values()) <= 0:  
         sheet.insert_row(headers, 1)
 
 # Fetch sheets and extract keywords
@@ -656,8 +656,8 @@ def process_single_url(url, source, good_keywords, bad_keywords):
         languages = detect_language(title, description)
         lang_text = ", ".join(languages) if languages else "unknown"
         score, details, good_count, bad_count = calculate_score(url, title, description, languages, good_keywords, bad_keywords)
-        title_en = translate_text(title, "en")
-        description_en = translate_text(description, "en")
+        title_en = translate_to_english(title)
+        description_en = translate_to_english(description)
         row_data = [url, title, description, title_en, description_en, score, details, source, lang_text, good_count, bad_count, timestamp]
     except Exception as e:
         st.error(f"Error processing URL '{url}': {e}")
