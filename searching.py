@@ -374,6 +374,18 @@ def google_search(query, num_results=100, language="en"):
         st.error(f"An error occurred during the search: {e}")
         return []
 
+def translate_text(input, lang_code):
+    if not input.strip():
+        return ""
+    if not isinstance(input, str):
+        input = str(input)
+    translator = Translator()
+    try:
+        translation = translator.translate(input, src='auto', dest=lang_code)
+        return translation.text
+    except Exception as e:
+        error_handler("translating", input, e)
+        return f"{input} (error)"
 
 # Function to fetch title from a URL
 def get_title(url):
@@ -644,7 +656,9 @@ def process_single_url(url, source, good_keywords, bad_keywords):
         languages = detect_language(title, description)
         lang_text = ", ".join(languages) if languages else "unknown"
         score, details, good_count, bad_count = calculate_score(url, title, description, languages, good_keywords, bad_keywords)
-        row_data = [url, title, description, score, details, source, lang_text, good_count, bad_count, timestamp]
+        title_en = translate_text(title, "en")
+        description_en = translate_text(description, "en")
+        row_data = [url, title, description, title_en, description_en, score, details, source, lang_text, good_count, bad_count, timestamp]
     except Exception as e:
         st.error(f"Error processing URL '{url}': {e}")
         score = "C"
