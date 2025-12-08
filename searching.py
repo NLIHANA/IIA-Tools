@@ -656,9 +656,7 @@ def process_single_url(url, source, good_keywords, bad_keywords):
         languages = detect_language(title, description)
         lang_text = ", ".join(languages) if languages else "unknown"
         score, details, good_count, bad_count = calculate_score(url, title, description, languages, good_keywords, bad_keywords)
-        title_en = translate_text(title, "en")
-        description_en = translate_text(description, "en")
-        row_data = [url, title, description, title_en, description_en, score, details, source, lang_text, good_count, bad_count, timestamp]
+        row_data = [url, title, description, score, details, source, lang_text, good_count, bad_count, timestamp]
     except Exception as e:
         st.error(f"Error processing URL '{url}': {e}")
         score = "C"
