@@ -197,7 +197,7 @@ def domain_split(client, sheet_id, urls, source_name):
     bad_keywords = [kw.lower() for kw in keywords_sheet.col_values(3)[1:]]  # Lowercase bad keywords
     headers = ["URL", "Matching Count", "Matching Words", "J Count", "Words", "Source", "Timestamp"]
     results_sheet = client.open_by_key(sheet_id).worksheet("Results")
-    if len(results_sheet.get_all_values()) <= 1:  # Only the header exists
+    if len(results_sheet.get_all_values()) < 1:  # Only the header exists
         results_sheet.insert_row(headers, 1)
     try:
         with st.status("Working..."):
