@@ -19,4 +19,3 @@ spacy
 google-api-python-client
 selenium
 chromium
-traceback
