@@ -22,6 +22,8 @@ import tempfile
 import string
 import unicodedata
 from requests.cookies import RequestsCookieJar
+import traceback
+
 
 # Install cache for HTTP requests
 requests_cache.install_cache('http_cache', expire_after=300)
@@ -31,6 +33,7 @@ headers = {"User-Agent": "AdsBot-Google (+http://www.google.com/adsbot.html)"}
 
 # Error handler function to streamline error handling
 def error_handler(function, item, error_message):
+    traceback.print_exc()
     st.error(f"Error processing {function} for '{item}': {error_message}")
     return "Error", "Error"
 
