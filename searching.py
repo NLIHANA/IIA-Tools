@@ -21,6 +21,7 @@ import time
 import tempfile
 import string
 import unicodedata
+from requests.cookies import RequestsCookieJar
 
 # Install cache for HTTP requests
 requests_cache.install_cache('http_cache', expire_after=300)
